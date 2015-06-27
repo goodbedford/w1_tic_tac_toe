@@ -6,8 +6,9 @@
   border: 1px solid black;
   height: 150px;
   font-size: 3em;
+  font-weight: bold;
   text-align: center;
-  padding: 2em;
+  padding: 1em;
   }
 }
 
