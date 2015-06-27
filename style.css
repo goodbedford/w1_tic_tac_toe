@@ -5,4 +5,21 @@
 .box {
   border: 1px solid black;
   height: 150px;
+  font-size: 3em;
+  text-align: center;
+  padding: 2em;
+  }
+}
+
+.xColor {
+  color: #7FFF00;
+  background-color: yellow;
+}
+
+.oColor {
+  color: red;
+}
+
+.clicked{
+
 }
