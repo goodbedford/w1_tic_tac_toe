@@ -9,7 +9,8 @@
     <!-- Bootstrap CDN -->
    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-
+    <script src="jquery-2.1.4.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
     <!-- link to stylesheet (always require after Bootstrap) -->
     <link rel="stylesheet" href="style.css">
     <!-- link to javascript file -->
@@ -25,11 +26,20 @@
           <hr>
         </div>
       </div>
-      <div class="row">
-        <div class="row text-center ">
-            <h1 id="winnerX" class="hiddenDiv">Player X is the Winner</h1>
+      <div class="row text-center">
+        <div class="">
+            <h1 id="winnerX" class="hideTag" style="display:none;">Player X is the Winner</h1>
+            <h1 id ="winnerY" class="hideTag"  style="display:none;">Player Y is the Winnner</h1>
         </div>
-
+      </div>
+        <!-- Player name section -->
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center  " id="playerBoard">
+            <div id="playerXName" class="col-xs-4 xColor">Player X</div>
+            <div class="col-xs-4"><span id="vs"><</span></div>
+            <div id="playerOName" class="col-xs-4">Player O</div>
+          </div>
+        </div>
         <!-- a column represents our game board -->
         <!-- the `offset` class helps us center the board -->
         <div class="col-md-6 col-md-offset-3" id="board">
@@ -58,9 +68,6 @@
           <button id="reset">Reset</button>
         </div>
       </div>
-
-    </div>
-
   </body>
 </html>
                 

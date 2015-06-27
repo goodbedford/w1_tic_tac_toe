@@ -2,6 +2,15 @@
   margin-top: 10px;
 }
 
+#playerBoard div{
+  font-size: 3em;
+}
+#playerBoard div span{
+  color:purple;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .box {
   border: 1px solid black;
   height: 150px;
@@ -13,7 +22,7 @@
   }
 }
 
-.hiddenDiv{
+.hideTag{
   display: none;
 }
 
@@ -27,7 +36,6 @@
 }
 .xColor {
   color: #0DD754;  /* #7FFF00; */
-  background-color: yellow;
 }
 .clicked{
 
