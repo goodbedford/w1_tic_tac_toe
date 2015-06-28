@@ -1,12 +1,34 @@
 // wait for the DOM to finish loading
 window.addEventListener('DOMContentLoaded', function() {
   // all code goes here
-  var squares = document.querySelectorAll(".box");
+  //var squares = document.querySelectorAll(".box");
+  var squares = document.getElementsByClassName("box");
+
   var counter = 0;
   var resetBtn = document.getElementById("reset");
   var counter = 0;
   var winnerArray = [];
-  var winnerArrayY = [];
+
+  var sqArr = [];
+  var sqObjs ={};
+  for (var i = 0; i < squares.length; i++){
+      sqObjs[i] = squares[i];
+      sqArr.push(sqObjs[i]);
+      //console.log(sqObjs[i].innerText);
+  }
+
+  // function to change winnner styles
+  var addWinnerStyle = function(winSq1, winSq2, winSq3, winMsg) {
+    var winnerBox = document.getElementById("winnerBox");
+    winnerBox.classList.remove("hideTag");
+    winnerBox.innerHTML = winMsg;
+    winSq1.classList.add("winnerColor");
+    winSq2.classList.add("winnerColor");
+    winSq3.classList.add("winnerColor");
+
+  } 
+  //console.log(sqObjs[0]);
+  //console.log("this is the sqArr:" + sqArr[0]);
 
   // var topRow = function( someList ){
   //   if (var i = 0; i < 3; i++){
@@ -22,64 +44,311 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //   }
   // }
+  var getNodeIndex = function(arr, node) {
+    for(var i = 0; i < arr.length; i++){
+      //for (var j = 0; j < 2; j++){
+      //   if( arr[i][j] == node){
+      //     console.log("this index:" +i);
+      //     console.log("this is node:", node);
+      //     return i;
 
-  var checkWinner = function(someArr){
-    //console.log("check winner");
-    for(var i = 0; i < someArr.length; i ++){
-      if(someArr[0] == "X" &&  //top row
-         someArr[1] == "X" &&
-         someArr[2] == "X" ||
-         someArr[3] == "X" && // middle row
-         someArr[4] == "X" &&
-         someArr[5] == "X" ||
-         someArr[6] == "X" && // bottom row
-         someArr[7] == "X" &&
-         someArr[8] == "X" ||
-         someArr[0] == "X" && // left column
-         someArr[3] == "X" &&
-         someArr[6] == "X" ||
-         someArr[1] == "X" && // middle column
-         someArr[4] == "X" &&
-         someArr[7] == "X" ||
-         someArr[2] == "X" && //right column
-         someArr[5] == "X" &&
-         someArr[8] == "X")
-      {
-        console.log("the winner is X..");
-        console.log(someArr);
-        document.getElementById("winnerX").style.display = "block";
-        document.getElementById("board").style.display = "none";
-          return "the winner is X";
-      }else if(
-        someArr[0] == "O" &&  //top row
-        someArr[1] == "O" &&
-        someArr[2] == "O" ||
-        someArr[3] == "O" && // middle row
-        someArr[4] == "O" &&
-        someArr[5] == "O" ||
-        someArr[6] == "O" && // bottom row
-        someArr[7] == "O" &&
-        someArr[8] == "O" ||
-        someArr[0] == "O" && // left column
-        someArr[3] == "O" &&
-        someArr[6] == "O" ||
-        someArr[1] == "O" && // middle column
-        someArr[4] == "O" &&
-        someArr[7] == "O" ||
-        someArr[2] == "O" && //right column
-        someArr[5] == "O" &&
-        someArr[8] == "O")
-      {
-        console.log("the winner is O");
-        console.log(someArr);
-        document.getElementById("winnerO").style.display = "block";
-        document.getElementById("board").style.display = "none";
-
-        return "the winner is OO";
+      // }
+      if( arr[i] == node){
+        console.log("this index:" +i);
+        console.log("this is node:", node);
+        return i;
       }
-      
     }
   }
+
+  var checkWinner = function(){
+
+  // get each square by id
+  var sq0 = document.getElementById("sq0"),        
+      sq1 = document.getElementById("sq1"),
+      sq2 = document.getElementById("sq2"),
+      sq3 = document.getElementById("sq3"),
+      sq4 = document.getElementById("sq4"),
+      sq5 = document.getElementById("sq5"),
+      sq6 = document.getElementById("sq6"),
+      sq7 = document.getElementById("sq7"),
+      sq8 = document.getElementById("sq8");
+  //check each row or column of squares and check innerText for X 
+  if (sq0.innerText == "X" &&  //top row
+      sq1.innerText == "X" &&
+      sq2.innerText == "X"){
+
+    console.log(" X wins top row");
+    addWinnerStyle(sq0, sq1, sq2, "Player X wins!! <br />Top Row");
+    //document.getElementById("winnerX").style.display = "block";
+    //document.getElementById("board").style.display = "none";
+    return "the winner is X";
+  } 
+  else if (sq3.innerText == "X" && // middle row
+           sq4.innerText == "X" &&
+           sq5.innerText == "X"){
+
+         console.log(" X wins middle row");
+         addWinnerStyle(sq3, sq4, sq5, "Player X wins!! <br />Middle Row");
+
+         //document.getElementById("winnerX").style.display = "block";
+         //document.getElementById("board").style.display = "none";
+         return "the winner is X";
+  }
+  else if (sq6.innerText == "X" && // bottom row
+           sq7.innerText == "X" &&
+           sq8.innerText == "X"){
+
+         console.log("X wins bottom row");
+         addWinnerStyle(sq6, sq7, sq8, "Player X wins!! <br />Bottom Row");
+         
+         // document.getElementById("winnerX").style.display = "block";
+         // document.getElementById("board").style.display = "none";
+         return "the winner is X";
+  }
+  else if (sq0.innerText == "X" && // left column
+           sq3.innerText == "X" &&
+           sq6.innerText == "X"){
+
+         console.log("X wins left column");
+         addWinnerStyle(sq0, sq3, sq6, "Player X wins!! <br />Left Column");
+
+         // document.getElementById("winnerX").style.display = "block";
+         // document.getElementById("board").style.display = "none";
+         return "the winner is X";
+  }
+  else if (sq1.innerText == "X" && // middle column
+           sq4.innerText == "X" &&
+           sq7.innerText == "X"){
+
+           console.log("X wins middle column ");
+           addWinnerStyle(sq1, sq4, sq7, "Player X wins!! <br />Middle Column");
+
+            // document.getElementById("winnerX").style.display = "block";
+            // document.getElementById("board").style.display = "none";
+            return "the winner is X";
+  }
+  else if (sq2.innerText == "X" && //right column
+          sq5.innerText == "X" &&
+          sq8.innerText == "X"){
+
+           console.log("X wins right column ");
+           addWinnerStyle(sq2, sq5, sq8, "Player X wins!! <br />Right Column");
+
+            // document.getElementById("winnerX").style.display = "block";
+            //document.getElementById("board").style.display = "none";
+           return "the winner is X";
+  }
+  else if (sq0.innerText == "X" && //left to right diagnol 
+           sq4.innerText == "X" &&
+           sq8.innerText == "X"){
+
+           console.log("X wins left to right diagnol");
+           addWinnerStyle(sq0, sq4, sq8, "Player X wins!! <br />Left to Right Diagnol");
+
+           //document.getElementById("winnerX").style.display = "block";
+           //document.getElementById("board").style.display = "none";
+            return "the winner is X";
+  }
+  else if (sq2.innerText == "X" && //right to left diagnol 
+           sq4.innerText == "X" &&
+           sq6.innerText == "X"){
+
+           console.log("X wins right to left diagnol");
+           addWinnerStyle(sq2, sq4, sq6, "Player X wins!! <br />Right to Left Diagnol");
+
+           //document.getElementById("winnerX").style.display = "block";
+           //document.getElementById("board").style.display = "none";
+           return "the winner is X";
+  }
+  if (sq0.innerText == "O" &&  //top row
+      sq1.innerText == "O" &&
+      sq2.innerText == "O"){
+
+      console.log(" O wins top row");
+      addWinnerStyle(sq0, sq1, sq2, "Player O wins!! <br />Top Row");
+
+      //document.getElementById("winnerO").style.display = "block";
+      //document.getElementById("board").style.display = "none":
+      return "the winner is O";
+  } 
+  else if (sq3.innerText == "O" && // middle row
+           sq4.innerText == "O" &&
+           sq5.innerText == "O"){
+
+          console.log(" O wins middle row");
+          addWinnerStyle(sq3, sq4, sq5, "Player O wins!! <br />Middle Row");
+
+         //document.getElementById("winnerO").style.display = "block";
+         //document.getElementById("board").style.display = "none";
+         return "the winner is O";
+  }  else if (sq6.innerText == "O" && // bottom row
+           sq7.innerText == "O" &&
+           sq8.innerText == "O"){
+
+           console.log("O wins bottom row");
+           addWinnerStyle(sq6, sq7, sq8, "Player O wins!! <br />Bottom Row");
+
+         //document.getElementById("winnerO").style.display = "block";
+         //document.getElementById("board").style.display = "none";
+         return "the winner is O";
+  }
+  else if (sq0.innerText == "O" && // left column
+           sq3.innerText == "O" &&
+           sq6.innerText == "O"){
+
+           console.log("O wins left column");
+           addWinnerStyle(sq0, sq3, sq6, "Player O wins!! <br />Left Column");
+
+         //document.getElementById("winnerO").style.display = "block";
+         //document.getElementById("board").style.display = "none";
+         return "the winner is O";
+  }
+  else if (sq1.innerText == "O" && // middle column
+           sq4.innerText == "O" &&
+           sq7.innerText == "O"){
+
+           console.log("O wins middle column ");
+           addWinnerStyle(sq1, sq4, sq7, "Player O wins!! <br />Middle Column");
+
+            //document.getElementById("winnerO").style.display = "block";
+            //document.getElementById("board").style.display = "none";
+            return "the winner is O";
+  }
+  else if (sq2.innerText == "O" && //right column
+          sq5.innerText == "O" &&
+          sq8.innerText == "O"){
+
+           console.log("O wins right column ");
+           addWinnerStyle(sq2, sq5, sq8, "Player O wins!! <br />Right Column");
+
+            //document.getElementById("winnerO").style.display = "block";
+            //document.getElementById("board").style.display = "none";
+            return "the winner is O";
+  }
+  else if (sq0.innerText == "O" && //left to right diagnol 
+           sq4.innerText == "O" &&
+           sq8.innerText == "O"){
+
+           console.log("O wins left to right diagnol");
+           addWinnerStyle(sq0, sq4, sq8, "Player O wins!! <br />Left to Right Diagnol");
+           //document.getElementById("winnerO").style.display = "block";
+           //document.getElementById("board").style.display = "none";
+            return "the winner is O";
+  }
+  else if (sq2.innerText == "O" && //right to left diagnol 
+           sq4.innerText == "O" &&
+           sq6.innerText == "O"){
+
+           console.log("O wins right to left diagnol");
+           addWinnerStyle(sq2, sq4, sq6, "Player O wins!! <br />Right to Left Diagnol");
+
+           //document.getElementById("winnerO").style.display = "block";
+           //document.getElementById("board").style.display = "none";
+            return "the winner is O";
+  }
+}
+//  if(sq0.innerText == "O" &&  //top row
+//    sq1.innerText == "O" &&
+//    sq2.innerText == "O" ||
+//    sq3.innerText == "O" && // middle row
+//    sq4.innerText == "O" &&
+//    sq5.innerText == "O" ||
+//    sq6.innerText == "O" && // bottom row
+//    sq7.innerText == "O" &&
+//    sq8.innerText == "O" ||
+//    sq0.innerText == "O" && // left column
+//    sq3.innerText == "O" &&
+//    sq6.innerText == "O" ||
+//    sq1.innerText == "O" && // middle column
+//    sq4.innerText == "O" &&
+//    sq7.innerText == "O" ||
+//    sq2.innerText == "O" && //right column
+//    sq5.innerText == "O" &&
+//    sq8.innerText == "O" ||
+//    sq0.innerText == "O" && //left to right diagnol 
+//    sq4.innerText == "O" &&
+//    sq8.innerText == "O" ||
+//    sq2.innerText == "O" && //right to left diagnol 
+//    sq4.innerText == "O" &&
+//    sq6.innerText == "O")
+//   {
+//        console.log("the winner is O");
+//        //console.log(someArr);
+//        document.getElementById("winnerO").style.display = "block";
+//        document.getElementById("board").style.display = "none";
+
+//        return "the winner is O";
+//   }
+// } 
+  //console.log("check winner");
+  //for(var i = 0; i < someArr.length; i ++){
+  //     if(someArr[0].innerText == "X" &&  //top row
+  //        someArr[1].innerText == "X" &&
+  //        someArr[2].innerText == "X" ||
+  //        someArr[3].innerText == "X" && // middle row
+  //        someArr[4].innerText == "X" &&
+  //        someArr[5].innerText == "X" ||
+  //        someArr[6].innerText == "X" && // bottom row
+  //        someArr[7].innerText == "X" &&
+  //        someArr[8].innerText == "X" ||
+  //        someArr[0].innerText == "X" && // left column
+  //        someArr[3].innerText == "X" &&
+  //        someArr[6].innerText == "X" ||
+  //        someArr[1].innerText == "X" && // middle column
+  //        someArr[4].innerText == "X" &&
+  //        someArr[7].innerText == "X" ||
+  //        someArr[2].innerText == "X" && //right column
+  //        someArr[5].innerText == "X" &&
+  //        someArr[8].innerText == "X" ||
+  //        someArr[0].innerText == "X" && //left to right diagnol 
+  //        someArr[4].innerText == "X" &&
+  //        someArr[8].innerText == "X" ||
+  //        someArr[2].innerText == "X" && //right to left diagnol 
+  //        someArr[4].innerText == "X" &&
+  //        someArr[6].innerText == "X")
+  //     {
+  //       console.log("the winner is X..");
+  //       //console.log(someArr);
+  //       document.getElementById("winnerX").style.display = "block";
+  //       document.getElementById("board").style.display = "none";
+  //       return "the winner is X";
+  //     }else if(
+  //       someArr[0] == "O" &&  //top row
+  //       someArr[1] == "O" &&
+  //       someArr[2] == "O" ||
+  //       someArr[3] == "O" && // middle row
+  //       someArr[4] == "O" &&
+  //       someArr[5] == "O" ||
+  //       someArr[6] == "O" && // bottom row
+  //       someArr[7] == "O" &&
+  //       someArr[8] == "O" ||
+  //       someArr[0] == "O" && // left column
+  //       someArr[3] == "O" &&
+  //       someArr[6] == "O" ||
+  //       someArr[1] == "O" && // middle column
+  //       someArr[4] == "O" &&
+  //       someArr[7] == "O" ||
+  //       someArr[2] == "O" && //right column
+  //       someArr[5] == "O" &&
+  //       someArr[8] == "O" ||
+  //       someArr[0] == "O" && //left to right diagnol 
+  //       someArr[4] == "O" &&
+  //       someArr[8] == "O" ||
+  //       someArr[2] == "O" && //right to left diagnol 
+  //       someArr[4] == "O" &&
+  //       someArr[6] == "O")
+  //     {
+  //       console.log("the winner is O");
+  //       //console.log(someArr);
+  //       document.getElementById("winnerO").style.display = "block";
+  //       document.getElementById("board").style.display = "none";
+
+  //       return "the winner is O";
+  //     }
+      
+  //   //}
+  // }
   var isWinner = function(){
      for (var i =0; i < squares.length; i++) {
      }
@@ -102,27 +371,38 @@ window.addEventListener('DOMContentLoaded', function() {
       var playerOName = document.getElementById("playerOName");
       var vs = document.getElementById("vs");
 
-      console.log(this);
-      console.log(); 
+      //console.log(this);
+      //console.log(); 
 
       if (counter % 2 == 0) {
         //this checks for Xs, should be evens
         console.log("counter is: ", counter);
         if(isEmpty(this) ){
           console.log("this is x", isEmpty(this) );
+          //console.log("this is:" + Object.getPrototypeOf(this);
+          //console.log("inside counter the index of x is:" + getNodeIndex(sqArr, this) );
+          //console.log("the index of x is:" + squares.item(this))
           // add change color
           playerXName.classList.remove("xColor");
           playerOName.classList.add("oColor");
           vs.innerText = ">";
 
-
           this.classList.add("xColor");
           this.classList.remove("oColor");
           console.log(this.classList);
           this.innerText = "X";
-          winnerArray.push(this.innerText);
-          checkWinner(winnerArray);
-          console.log(winnerArray);
+          //console.log("inside counter the index of x is:" + getNodeIndex(sqArr, this) );
+          
+          // assign x to index of winnerArray then 
+          // using check winner func to see if there are matches to array index
+          console.log("the this for X"+ this );
+          console.log("this is X innnerText for:" + this.innerText);
+          // winnerArray[getNodeIndex(sqArr, this)] = this.innerText;
+          //winnerArray[getNodeIndex(sqObjs, this)] = this.innerText;
+
+          checkWinner();
+          //checkWinner(winnerArray);
+          //console.log("winnerArray is=" + winnerArray);
           counter++;
         }
       } else if(isEmpty(this) ){
@@ -132,8 +412,6 @@ window.addEventListener('DOMContentLoaded', function() {
           playerOName.classList.remove("oColor");
           vs.innerText = "<";
 
-          //playerOName.classList.add("oColor");
-          // playerXName.classList.remove("xColor");
           this.classList.remove("xColor");
           this.classList.add("oColor");
           //this.className = this.className + " oColor";
@@ -141,9 +419,16 @@ window.addEventListener('DOMContentLoaded', function() {
           console.log(this.classList);
           console.log("this is O:", isEmpty(this) );
           this.innerText = "O";
-          winnerArray.push(this.innerText);
-          checkWinner(winnerArray);
-          console.log(winnerArray);
+          //winnerArray[getNodeIndex(sqArr, this)].push(this.innerText);
+
+          // assign o to index of winnerArray then 
+          // using check winner func to see if there are matches to array index
+          console.log("this is O innnerText for :" + this.innerText);
+          console.log("this O is: " +this);  
+          checkWinner();
+          //winnerArray[getNodeIndex(sqArr, this)] = this.innerText;
+          //checkWinner(winnerArray);
+          //console.log(winnerArray);
           counter++;
         }
          

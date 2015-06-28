@@ -3,7 +3,7 @@
 }
 
 #playerBoard div{
-  font-size: 3em;
+  font-size: 2em;
 }
 #playerBoard div span{
   color:purple;
@@ -18,7 +18,7 @@
   font-weight: bold;
   text-align: center;
   padding: 1em;
-  color: red;
+  /*color: red; */
   }
 }
 
@@ -29,10 +29,21 @@
 .oColor {
   color: red;
 }
-
+.winnerColor{
+  border: 5px solid green;
+  background-color: white;
+}
 .winner{
   padding: 3em;
   color: orange;
+}
+.winnerBoxStyle{
+  font-size: 1em;
+  font-weight: bold;
+  color: green;
+}
+.winnerHeader{
+  min-height: 4em;
 }
 .xColor {
   color: #0DD754;  /* #7FFF00; */
