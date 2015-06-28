@@ -6,14 +6,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
   var counter = 0;
   var resetBtn = document.getElementById("reset");
-  var clearBtn = document.getElementById("clearBoard");
   var counter = 0;
   var winnerArray = [];
-  var gameOver = false;
-  var xNumOfWins = 0;
-  var oNumOfWins = 0;
-  var numOfGames = 0;
-  var maxGames = 2;
+
   var sqArr = [];
   var sqObjs ={};
   for (var i = 0; i < squares.length; i++){
@@ -31,23 +26,7 @@ window.addEventListener('DOMContentLoaded', function() {
     winSq2.classList.add("winnerColor");
     winSq3.classList.add("winnerColor");
 
-  }
-  var clearBoard = function() {
-    document.getElementById("playerXName").classList.remove("hideTag");
-    document.getElementById("playerOName").classList.remove("hideTag");
-    document.getElementById("winnerBox").classList.add("hideTag");
-    var vsArrow = document.getElementById("vs");
-    if( vsArrow.innerText == "<"){
-      vsArrow.innerText = ">";
-    }
-    gameOver = false;
-    for (var i = 0; i < squares.length; i++){
-      squares[i].innerText = "";
-      squares[i].classList.remove("winnerColor");
-      //document.location.reload(true);
-    }
-  }
-
+  } 
   //console.log(sqObjs[0]);
   //console.log("this is the sqArr:" + sqArr[0]);
 
@@ -382,17 +361,16 @@ window.addEventListener('DOMContentLoaded', function() {
 
   for(var i = 0; i < squares.length; i++){
     //console.log("Every square in list:" + squares[i] );
-    squares[i].addEventListener("click", function (event){
+    squares[i].addEventListener("click", function(event, x){
       event.preventDefault();
       var playerXName = document.getElementById("playerXName");
       var playerOName = document.getElementById("playerOName");
       var vs = document.getElementById("vs");
-    if (xNumOfWins < maxGames && oNumOfWins < maxGames) {
 
       if (counter % 2 == 0) {
         //this checks for Xs, should be evens
         console.log("counter is: ", counter);
-        if(isEmpty(this) && !gameOver ){
+        if(isEmpty(this) ){
           console.log("this is x", isEmpty(this) );
           //console.log("this is:" + Object.getPrototypeOf(this);
           //console.log("inside counter the index of x is:" + getNodeIndex(sqArr, this) );
@@ -416,20 +394,15 @@ window.addEventListener('DOMContentLoaded', function() {
           //winnerArray[getNodeIndex(sqObjs, this)] = this.innerText;
 
           if (checkWinner() ){
-            playerOName.classList.add("hideTag");
-            //playerOName.innerText = "";
+            //playerOName.classList.add("hideTag");
+            playerOName.innerText = "";
             vs.innerText = "<";
-            gameOver = true;
-            xNumOfWins++;
-            numOfGames++;
-            console.log("the num of games is:", numOfGames);
-            document.getElementById("xNumWins").innerText = xNumOfWins;
           }
           //checkWinner(winnerArray);
           //console.log("winnerArray is=" + winnerArray);
           counter++;
         }
-      } else if(isEmpty(this) && !gameOver ){
+      } else if(isEmpty(this) ){
           console.log("counter is: ", counter);
           // change color
           playerXName.classList.add("xColor");
@@ -451,39 +424,36 @@ window.addEventListener('DOMContentLoaded', function() {
           console.log("this O is: " +this);  
           
           if (checkWinner() ){
-            playerXName.classList.add("hideTag");
-            //playerXName.innerText = "";
+            //playerXName.classList.add("hideTag");
+            playerXName.innerText = "";
             vs.innerText = ">";
-            oNumOfWins++;
-            numOfGames++;
-            document.getElementById("oNumWins").innerText = oNumOfWins;
-            gameOver = true;
           }
           //winnerArray[getNodeIndex(sqArr, this)] = this.innerText;
           //checkWinner(winnerArray);
           //console.log(winnerArray);
           counter++;
         }
-      }else{
-        document.getElementById("board").style.display = "none";
-        document.getElementByTagName("h1").appendChild.innerHTML("<p>Game Over</p>");
-      }
+         
     });
   }
-    clearBtn.addEventListener("click", clearBoard);
     resetBtn.addEventListener("click", function(){
+      
+      for (var i = 0; i < squares.length; i++){
+        squares[i].innerText = "";
         document.location.reload(true);
-    });   
-    // resetBtn.addEventListener("click", function(){
-    //   for (var i = 0; i < squares.length; i++){
-    //     squares[i].innerText = "";
-    //     document.location.reload(true);
-    //   }
-    // });
+      }
+    });
 
     // for (var i = 0; i < squares.length; i ++){
     //   squares[i].addEventListener("click", )
     // }
+
+
+
+
+
+
+
 
 // var testType = function(obj){
 
@@ -545,6 +515,17 @@ window.addEventListener('DOMContentLoaded', function() {
 //     }
 // }
 
+// var clearBoard = function(sq){
+  
+//   return function() {
+//     for(var i = 0; i < sq.length; i++){
+//     event.preventDefault();
+
+//     console.log(sq.length);
+//     sq[i].innerText = "";
+//     }
+//   }
+// }
 
 // for(var i = 0; i < squares.length; i++){
 //   squares[i].addEventListener("click", placeMove());   

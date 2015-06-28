@@ -1,6 +1,6 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///Users/goodbedford/dev/w1_tic_tac_toe/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
 
     <!-- set viewport to device width to allow responsiveness -->
@@ -8,13 +8,13 @@
 
     <!-- Bootstrap CDN -->
    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <script src="jquery-2.1.4.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="file:///Users/goodbedford/dev/w1_tic_tac_toe/bootstrap/css/bootstrap.css">
+    <script src="./Tic Tac Toe_files/jquery-2.1.4.js"></script>
+    <script src="./Tic Tac Toe_files/bootstrap.js"></script>
     <!-- link to stylesheet (always require after Bootstrap) -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="file:///Users/goodbedford/dev/w1_tic_tac_toe/style.css">
     <!-- link to javascript file -->
-    <script src="ticTacToe.js"></script>
+    <script src="./Tic Tac Toe_files/ticTacToe.js"></script>
 
     <title>Tic Tac Toe</title>
   </head>
@@ -22,25 +22,22 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="myHeader">Tic Tac Toe</h1>
-          <hr id ="hLine">
+          <h1>Tic Tac Toe</h1>
+          <hr>
         </div>
       </div>
       <div class="row text-center">
         <div class="winnerHeader">
-            <div id="winnerBox" class="hideTag winnerBoxStyle"></div>
+            <div id="winnerBox" class="winnerBoxStyle">Player X wins!! <br>Middle Row</div>
             <!--<h1 id ="winnerO" class="hideTag"  style="display:none;">Player O is the Winnner</h1> -->
         </div>
       </div>
         <!-- Player name section -->
         <div class="row">
           <div class="col-md-6 col-md-offset-3 text-center  " id="playerBoard">
-            <div id="playerXName" class="col-xs-4 xColor">Player X: 
-              <span id="xNumWins"></span>
-            </div>
-            <div class="col-xs-4"><span id="vs"><</span></div>
-            <div id="playerOName" class="col-xs-4">Player O: 
-            <span id="oNumWins"></span></div>
+            <div id="playerXName" class="col-xs-4 xColor"></div>
+            <div class="col-xs-4"><span id="vs">&gt;</span></div>
+            <div id="playerOName" class="col-xs-4"></div>
           </div>
         </div>
         <!-- a column represents our game board -->
@@ -50,28 +47,27 @@
           <!-- you can put rows inside of columns! -->
           <!-- our board has 3 rows, each with 3 columns inside -->
           <div class="row">
-            <div id="sq0" class="col-xs-4 box"></div>
-            <div id="sq1" class="col-xs-4 box"></div>
-            <div id="sq2" class="col-xs-4 box"></div>
+            <div id="sq0" class="col-xs-4 box oColor">O</div>
+            <div id="sq1" class="col-xs-4 box oColor">O</div>
+            <div id="sq2" class="col-xs-4 box oColor">O</div>
           </div>
 
           <div class="row">
-            <div id="sq3" class="col-xs-4 box"></div>
-            <div id="sq4" class="col-xs-4 box"></div>
-            <div id="sq5" class="col-xs-4 box"></div>
+            <div id="sq3" class="col-xs-4 box xColor winnerColor">X</div>
+            <div id="sq4" class="col-xs-4 box xColor winnerColor">X</div>
+            <div id="sq5" class="col-xs-4 box xColor winnerColor">X</div>
           </div>
 
           <div class="row">
-            <div id="sq6" class="col-xs-4 box"></div>
-            <div id="sq7" class="col-xs-4 box"></div>
+            <div id="sq6" class="col-xs-4 box oColor">O</div>
+            <div id="sq7" class="col-xs-4 box xColor">X</div>
             <div id="sq8" class="col-xs-4 box"></div>
           </div>
         </div>
         <div class="row text-center">
-          <button id="clearBoard" class="btn btn-lg">Clear Board</button>
-          <button id="reset" class="btn btn-lg">Reset</button>
+          <button id="reset">Reset</button>
         </div>
       </div>
-  </body>
-</html>
-                
+  
+
+                </body></html>

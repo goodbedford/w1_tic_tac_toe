@@ -5,12 +5,21 @@
 #playerBoard div{
   font-size: 2em;
 }
-#playerBoard div span{
-  color:purple;
+#reset{
+
+}
+#vs{
+  color:black;
   font-size: 1.5em;
   font-weight: bold;
 }
-
+body{
+  background-color:  silver;/*#D25FD2;*/}
+.btn{
+color:white;
+background-color: #E60042;
+margin-top: 10px;
+}
 .box {
   border: 1px solid black;
   height: 150px;
@@ -18,19 +27,26 @@
   font-weight: bold;
   text-align: center;
   padding: 1em;
+  background-color: white; /*   #FFC473; /*light orange */
   /*color: red; */
   }
 }
 
+.myHeader{
+  background-color: #FF9400; /*orange */
+}
 .hideTag{
   display: none;
 }
 
-.oColor {
-  color: red;
+.hLine>p{
+  height: 4em;
 }
+.oColor {
+  color: #033E6B; /*dark pink*/
+} 
 .winnerColor{
-  border: 5px solid green;
+  border: 5px solid #62E200; /*green */
   background-color: white;
 }
 .winner{
@@ -40,13 +56,13 @@
 .winnerBoxStyle{
   font-size: 1em;
   font-weight: bold;
-  color: green;
+  color: white;
 }
 .winnerHeader{
   min-height: 4em;
 }
 .xColor {
-  color: #0DD754;  /* #7FFF00; */
+  color: #6C006C;  /*dark purple*/
 }
 .clicked{
 
