@@ -1,12 +1,12 @@
 // wait for the DOM to finish loading
-window.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function(){ 
   // all code goes here
   //var squares = document.querySelectorAll(".box");
   var squares = document.getElementsByClassName("box");
 
   var counter = 0;
-  var resetBtn = document.getElementById("reset");
-  var clearBtn = document.getElementById("clearBoard");
+  var $resetBtn = $("reset");
+  var $clearBtn = $("clearBoard");
   var counter = 0;
   var winnerArray = [];
   var gameOver = false;
@@ -470,8 +470,8 @@ window.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-    clearBtn.addEventListener("click", clearBoard);
-    resetBtn.addEventListener("click", function(){
+    $clearBtn.click(clearBoard);
+    $resetBtn.click(function(){
         document.location.reload(true);
     });   
     // resetBtn.addEventListener("click", function(){
